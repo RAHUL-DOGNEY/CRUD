@@ -1,0 +1,78 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+
+<div class=row>
+<div class="col-sm-4">
+    <h4 class="text-center alert-primary pt-2 pb-2">Add New Student</h4>
+    <form method = "POST" >
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" name="Submit" class="btn btn-sccess" nonvalidate>
+    </form>
+</div >
+
+<div class="col-sm-7 offset">
+<h4 class="text-center alert-primary pt-2 pb-2"> Show Student Information</h4>
+{% if st %}
+<div class="thumnail">
+    <table class="table table-hover"> 
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in st %}
+            <tr>
+                <th scope="row">{{t.id}}</th>
+                <td>{{t.name}}</td>
+                <td>{{t.email}}</td>
+                <td>{{t.pwd}}</td>
+                <td>
+                    <a href = "{% url 'updatedata' t.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    {% comment %} Dynamic Url {% endcomment %}
+                    <form action = {% url 'deletedata' t.id %} method = "POST" class="d-inline">
+                    {% csrf_token %}
+                    <input type = "submit" class="btn btn-danger"value="Delete" >
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% else %}
+    <h3>Table Data</h3>
+    <h4 class="text-center alert alert-warning">No Record Forms</h4>
+{% endif %}
+<div>
+</div>
+</div>
+{% endblock content %}
+
+
+
+{% comment %} <!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="{% static 'enroll/css/bootstrap.css' %}">
+</head>
+<body>
+   {% comment %} STATIC FIELS {% endcomment %}
+    {% comment %} <script src="{% static 'myapp/js/jquery.js' %}"></script>
+    <script src="{% static 'myapp/js/popper.js' %}"></script>
+    <script src="{% static 'myapp/js/bootstrap.js' %}"></script> {% endcomment %}
+
+    
+</body>
+</html>

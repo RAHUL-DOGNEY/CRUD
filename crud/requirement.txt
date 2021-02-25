@@ -1,0 +1,11 @@
+step 1 - Create a project
+step 2 - Create a app 
+step 3 - Install app
+step 4 - Create Templates and Static Folder
+step 5 - Keep all Necessary Bootstrap File's , JS , CSS file.
+step 6 - Make Base HTML page and "{% extends '' %}" in other Files like Update,Show,etc.
+step 7 - Cheking Purpose Render A Files make funtion in "myapp/views.py"
+step 8 - Create a Model using FormModel Method's
+     8.1 - Create a Model in Models.py Class
+step 9 - Create Form after making of Models of DataBase.
+     9.1 - Create a Function's 
